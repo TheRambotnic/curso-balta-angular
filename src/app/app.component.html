@@ -1,6 +1,6 @@
 <h1 class="text-center title animate__animated animate__fadeIn">{{ titulo }}</h1>
 
-<ul class="animate__animated animate__flipInX animate__fast" *ngIf="mode === 'lista'">
+<ul class="animate__animated animate__flipInX animate__fast" *ngIf="mode === 0">
 	<p *ngIf="tarefas.length === 0"><small>Você ainda não tem nenhuma tarefa hoje</small></p>
 	<li *ngFor="let tarefa of tarefas">
 		<span [ngClass]="{'feito': tarefa.feito, 'bold': !tarefa.feito}">{{ tarefa.descritivo }}</span>
@@ -20,7 +20,7 @@
 	formGroup = associa o formulário ao FormBuilder do componente
 	formControlName = associa o nome do campo ao FormBuilder do componente
 -->
-<div id="modal" class="animate__animated animate__flipInX animate__fast" *ngIf="mode === 'adiciona'">
+<div id="modal" class="animate__animated animate__flipInX animate__fast" *ngIf="mode === 1">
 	<h1 class="text-center">Nova Tarefa</h1>
 	<form [formGroup]="formTarefa">
 		<input type="text" placeholder="Insira sua tarefa" maxlength="60" formControlName="tarefaDescritivo" />
@@ -40,11 +40,11 @@
 </div>
 
 <p class="text-center">
-	<button class="button add animate__animated animate__fadeInUp animate__faster" (click)="mudarEstado('adiciona')" *ngIf="mode === 'lista'">
+	<button class="button add animate__animated animate__fadeInUp animate__faster" (click)="mudarEstado(1)" *ngIf="mode === 0">
 		<span class="fas fa-plus-circle"></span> NOVA TAREFA
 	</button>
 
-	<button class="button add animate__animated animate__fadeInUp animate__faster" (click)="mudarEstado('lista')" *ngIf="mode === 'adiciona'">
+	<button class="button add animate__animated animate__fadeInUp animate__faster" (click)="mudarEstado(0)" *ngIf="mode === 1">
 		<span class="fas fa-times"></span> CANCELAR
 	</button>
 </p>

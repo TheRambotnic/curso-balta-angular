@@ -1,20 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Tarefa } from 'src/models/Tarefa';
+import { TarefaMode } from 'src/models/TarefaMode';
 
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html', // arquivo HTML que utiliza os componentes
-	styleUrls: [
-		'./app.component.css'
-	]
+	styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-	/**
-	 * @params 'lista' | 'adiciona'
-	*/
-	public mode: string = "lista";
-
+	public mode: TarefaMode = 0;
 	public tarefas: Tarefa[] = [];
 	public titulo: string = "Minhas Tarefas de Hoje";
 	public formTarefa: FormGroup;
@@ -26,12 +21,12 @@ export class AppComponent implements OnInit {
 			tarefaDescritivo: [
 				"", // valor padrão
 
-				// Validators.compose() = array de validações
-				Validators.compose([
+				// array de validações
+				[
 					Validators.minLength(4),
 					Validators.maxLength(60),
 					Validators.required
-				])
+				]
 			]
 		});
 
@@ -62,7 +57,7 @@ export class AppComponent implements OnInit {
 		this.salvar();
 	}
 
-	mudarEstado(mode: string): void {
+	mudarEstado(mode: number): void {
 		this.mode = mode;
 	}
 
