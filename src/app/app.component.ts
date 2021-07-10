@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
 		const id = this.tarefas.length + 1;
 		this.tarefas.push(new Tarefa(id, descritivo, false));
 		this.salvar();
-		this.limpar();
+		this.limpar(); // limpa formulário após inserir
 	}
 
 	remover(tarefa: Tarefa): void {
@@ -83,8 +83,7 @@ export class AppComponent implements OnInit {
 		// ver se não veio nulo do localStorage
 		if (dado) {
 			this.tarefas = JSON.parse(dado); // .parse = converte string para JSON
-		}
-		else {
+		} else {
 			this.tarefas = [];
 		}
 	}

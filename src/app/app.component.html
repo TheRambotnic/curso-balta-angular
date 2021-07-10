@@ -1,7 +1,10 @@
 <h1 class="text-center title animate__animated animate__fadeIn">{{ titulo }}</h1>
 
 <ul class="animate__animated animate__flipInX animate__fast" *ngIf="mode === 0">
-	<p *ngIf="tarefas.length === 0"><small>Você ainda não tem nenhuma tarefa hoje</small></p>
+	<p *ngIf="tarefas.length === 0">
+		<small>Você ainda não tem nenhuma tarefa hoje</small>
+	</p>
+
 	<li *ngFor="let tarefa of tarefas">
 		<span [ngClass]="{'feito': tarefa.feito, 'bold': !tarefa.feito}">{{ tarefa.descritivo }}</span>
 		<!--
@@ -10,9 +13,17 @@
 			[] 		= HTML <- TS
 			[()] 	= HTML <-> TS
 		-->
-		<button (click)="remover(tarefa)"><span class="fas fa-trash"></span></button>
-		<button *ngIf="!tarefa.feito" (click)="marcarFeito(tarefa)"><span class="far fa-check-circle"></span></button>
-		<button *ngIf="tarefa.feito" (click)="marcarNaoFeito(tarefa)"><span class="fas fa-check-circle" style="color: green"></span></button>
+		<button (click)="remover(tarefa)">
+			<span class="fas fa-trash"></span>
+		</button>
+		
+		<button *ngIf="!tarefa.feito" (click)="marcarFeito(tarefa)">
+			<span class="far fa-check-circle"></span>
+		</button>
+
+		<button *ngIf="tarefa.feito" (click)="marcarNaoFeito(tarefa)">
+			<span class="fas fa-check-circle" style="color: green"></span>
+		</button>
 	</li>
 </ul>
 
@@ -35,7 +46,9 @@
 
 		<br/>
 		
-		<button [disabled]="formTarefa.invalid" (click)="adicionar()" class="button"><span class="fas fa-save"></span> ADICIONAR</button>
+		<button class="button" [disabled]="formTarefa.invalid" (click)="adicionar()">
+			<span class="fas fa-save"></span> ADICIONAR
+		</button>
 	</form>
 </div>
 
